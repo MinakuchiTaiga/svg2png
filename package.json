@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "biome check .",
+    "lint": "biome check src index.html vite.config.ts vitest.config.ts package.json tsconfig.json biome.json AGENTS.md README.md",
     "format": "biome format --write .",
     "test": "vitest run"
   },
