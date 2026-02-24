@@ -1,0 +1,22 @@
+:root {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #131418;
+  background: #f4f6fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 840px;
+  margin: 48px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgb(18 28 45 / 10%);
+}
