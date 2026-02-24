@@ -23,5 +23,21 @@
 - `pnpm format`
 - `pnpm test`
 
-## 公開予定
-GitHub Pages で公開予定です（現時点では未公開）。
+## GitHub Pages 公開
+- 公開URL: `https://minakuchitaiga.github.io/svg2png/`
+- `main` ブランチへの push で `.github/workflows/pages.yml` が自動実行され、Pages にデプロイされます。
+
+## GitHub Actions 設定
+リポジトリの `Settings > Actions > General` で以下を推奨します。
+
+- Policy:
+  - `Allow MinakuchiTaiga, and select non-MinakuchiTaiga, actions and reusable workflows`
+- チェック:
+  - `Allow actions created by GitHub`
+  - `Allow actions by Marketplace verified creators`
+- Allow list:
+  - `actions/checkout@v4`
+  - `actions/setup-node@v4`
+  - `actions/upload-pages-artifact@v3`
+  - `actions/deploy-pages@v4`
+  - `pnpm/action-setup@v4`
