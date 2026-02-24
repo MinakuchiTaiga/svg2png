@@ -1,12 +1,27 @@
 # svg2png
 
-`private-difff` の技術スタック（Vite + TypeScript + pnpm + Biome + Vitest）をベースにした初期セットアップです。
+ブラウザ上で SVG 画像を読み込み、完全クライアントサイドで PNG/JPG に変換してダウンロードするツールです。
 
-## Scripts
+## 実装方針
+- 変換処理はブラウザ内のみで実行
+- SVG ファイルをサーバーへアップロードしない
+- 変換結果（PNG/JPG）はユーザー端末にダウンロード
 
-- `pnpm dev` : 開発サーバー
-- `pnpm build` : TypeScriptチェック + ビルド
-- `pnpm preview` : ビルド結果をプレビュー
-- `pnpm lint` : BiomeでLint
-- `pnpm format` : Biomeでフォーマット
-- `pnpm test` : Vitest実行
+## 技術スタック
+- Package manager: `pnpm`
+- App: TypeScript + Vite
+- Lint/Format: Biome
+- Test: Vitest
+- Deploy: GitHub Pages (GitHub Actions)
+
+## 開発コマンド
+- `pnpm install`
+- `pnpm dev`
+- `pnpm build`
+- `pnpm preview`
+- `pnpm lint`
+- `pnpm format`
+- `pnpm test`
+
+## 公開予定
+GitHub Pages で公開予定です（現時点では未公開）。
