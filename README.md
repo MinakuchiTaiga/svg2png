@@ -22,6 +22,9 @@
 - `pnpm lint`
 - `pnpm format`
 - `pnpm test`
+- `pnpm test:e2e:install` (初回のみ)
+- `pnpm test:e2e`
+- `pnpm test:e2e:ui`
 
 ## GitHub Pages 公開
 - 公開URL: `https://<your-github-username>.github.io/svg2png/`
