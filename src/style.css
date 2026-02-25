@@ -79,11 +79,15 @@ body {
   color: var(--ink);
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .tile svg {
   width: 84%;
   height: auto;
+  transform-origin: center;
+  will-change: transform, filter;
 }
 
 .tile text {
@@ -124,6 +128,18 @@ body {
   background-size: 12px 12px;
 }
 
+.tile-bag .bag-rain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.tile-bag .bag-rain {
+  opacity: 0;
+  z-index: 3;
+}
+
 .tile-hand {
   background: #f8fbff;
 }
@@ -135,19 +151,188 @@ body {
 
 .tile-wave {
   position: relative;
-  overflow: hidden;
+  isolation: isolate;
+}
+
+@property --wave-phase {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
 }
 
 .tile-wave::before {
   content: "";
   width: 78%;
   height: 88%;
+  --wave-phase: 0px;
   border-radius: 999px;
-  background: repeating-radial-gradient(
+  background-image: repeating-radial-gradient(
     circle at center,
-    var(--ink) 0 14px,
-    transparent 15px 27px
+    var(--ink) 0 calc(14px + var(--wave-phase)),
+    transparent calc(15px + var(--wave-phase)) calc(27px + var(--wave-phase))
   );
+  will-change: --wave-phase;
+}
+
+.tile:hover {
+  z-index: 1;
+}
+
+.tile-checker:hover {
+  animation: checkerShift 0.9s steps(5, end) infinite;
+}
+
+.tile-can:hover svg {
+  animation: canSpinWarp 1.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.tile-bag:hover .bag-rain {
+  opacity: 1;
+}
+
+.tile-bag svg {
+  position: relative;
+  z-index: 2;
+}
+
+.bag-drop {
+  position: absolute;
+  top: -96px;
+  left: var(--x);
+  width: 48px;
+  height: 50px;
+  border: 3px solid var(--ink);
+  border-radius: 4px;
+  transform: translateX(-50%) rotate(var(--r));
+  opacity: 0;
+}
+
+.bag-drop::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: -17px;
+  width: 18px;
+  height: 15px;
+  border: 3px solid var(--ink);
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
+}
+
+.bag-drop::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 15px;
+  width: 12px;
+  height: 12px;
+  background: var(--ink);
+}
+
+.tile-bag:hover .bag-drop {
+  animation: bagDrop var(--dur) cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+.tile-hand:hover svg circle {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: handPupilScan 2.4s ease-in-out infinite;
+}
+
+.tile-shirt:hover svg {
+  animation: shirtBeat 0.75s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+}
+
+.tile-wave:hover::before {
+  animation: waveTunnel 1.2s ease-in infinite;
+}
+
+@keyframes checkerShift {
+  0% {
+    background-position: 0 0, 0 32px, 32px -32px, -32px 0;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 26px 0, -26px 32px, 58px -32px, -58px 0;
+    transform: scale(1.03);
+  }
+  100% {
+    background-position: 52px 0, -52px 32px, 84px -32px, -84px 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes canSpinWarp {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  30% {
+    transform: rotate(-6deg) scale(1.06, 0.96);
+  }
+  60% {
+    transform: rotate(6deg) scale(0.96, 1.05);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes bagDrop {
+  0% {
+    opacity: 0;
+    top: -96px;
+    transform: translateX(-50%) rotate(var(--r));
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    top: var(--land);
+    transform: translateX(-50%) rotate(var(--r));
+  }
+}
+
+@keyframes handPupilScan {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  8% {
+    transform: translateX(-8px) translateY(1px) scale(0.95);
+  }
+  42% {
+    transform: translateX(-8px) translateY(1px) scale(0.95);
+  }
+  50% {
+    transform: translateX(8px) translateY(-1px) scale(0.95);
+  }
+  84% {
+    transform: translateX(8px) translateY(-1px) scale(0.95);
+  }
+}
+
+@keyframes shirtBeat {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  35% {
+    transform: scale(1.05) rotate(-1.5deg);
+  }
+  70% {
+    transform: scale(0.96) rotate(1.5deg);
+  }
+}
+
+@keyframes waveTunnel {
+  from {
+    --wave-phase: 0px;
+  }
+  to {
+    --wave-phase: 27px;
+  }
 }
 
 .panel {
@@ -435,5 +620,30 @@ body {
   .hero,
   .footer-note {
     padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .tile:hover,
+  .tile:hover svg,
+  .tile:hover::before {
+    animation: none;
+    transform: none;
+  }
+
+  .tile:hover::after {
+    animation: none;
+    transform: none;
+  }
+
+  .tile:hover .bag-drop {
+    animation: none;
+    transform: none;
   }
 }
