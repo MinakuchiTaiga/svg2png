@@ -32,8 +32,8 @@ describe("mountAppAndGetElements", () => {
 
     const root: FakeRoot = {
       innerHTML: "",
-      querySelector: (selector) =>
-        (elementsBySelector.get(selector) as Element | undefined) ?? null,
+      querySelector: <TElement extends Element>(selector: string) =>
+        (elementsBySelector.get(selector) as TElement | undefined) ?? null,
     };
 
     const result = mountAppAndGetElements(root as unknown as HTMLDivElement);

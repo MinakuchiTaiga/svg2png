@@ -120,24 +120,13 @@ body {
 }
 
 .tile-bag {
-  background-image: radial-gradient(
-    circle,
-    rgb(13 71 161 / 24%) 1.2px,
-    transparent 1.4px
-  );
-  background-size: 12px 12px;
+  background: #ffffff;
 }
 
-.tile-bag .bag-rain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.tile-bag .bag-rain {
-  opacity: 0;
-  z-index: 3;
+.tile-bag svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .tile-hand {
@@ -186,52 +175,30 @@ body {
   animation: canSpinWarp 1.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
-.tile-bag:hover .bag-rain {
-  opacity: 1;
+.tile-bag .bag-wrapper {
+  cursor: pointer;
 }
 
-.tile-bag svg {
-  position: relative;
-  z-index: 2;
+.tile-bag .bag-bg {
+  fill: url(#bag-dots-light);
+  transform-origin: 110px 110px;
+  transition: transform 0.2s;
 }
 
-.bag-drop {
-  position: absolute;
-  top: -96px;
-  left: var(--x);
-  width: 48px;
-  height: 50px;
-  border: 3px solid var(--ink);
-  border-radius: 4px;
-  transform: translateX(-50%) rotate(var(--r));
-  opacity: 0;
+.tile-bag .bag-main {
+  color: #0045a6;
+  transform: translateY(-10px) scale(0.88);
+  transform-origin: 110px 110px;
+  transition: transform 0.2s;
 }
 
-.bag-drop::before {
-  content: "";
-  position: absolute;
-  left: 12px;
-  top: -17px;
-  width: 18px;
-  height: 15px;
-  border: 3px solid var(--ink);
-  border-bottom: 0;
-  border-radius: 16px 16px 0 0;
+.tile-bag:hover .bag-bg {
+  animation: bagBgTrip 0.2s infinite steps(2);
 }
 
-.bag-drop::after {
-  content: "";
-  position: absolute;
-  left: 17px;
-  top: 15px;
-  width: 12px;
-  height: 12px;
-  background: var(--ink);
-}
-
-.tile-bag:hover .bag-drop {
-  animation: bagDrop var(--dur) cubic-bezier(0.2, 0.8, 0.25, 1) forwards;
-  animation-delay: var(--delay);
+.tile-bag:hover .bag-main {
+  animation: bagShake 0.1s infinite alternate;
+  filter: url(#bag-wave);
 }
 
 .tile-hand:hover svg circle {
@@ -278,19 +245,27 @@ body {
   }
 }
 
-@keyframes bagDrop {
+@keyframes bagBgTrip {
   0% {
-    opacity: 0;
-    top: -96px;
-    transform: translateX(-50%) rotate(var(--r));
+    fill: url(#bag-dots-light);
+    transform: scale(1) translate(0, 0);
   }
-  12% {
-    opacity: 1;
+  50% {
+    fill: url(#bag-dots-dark);
+    transform: scale(1.5) translate(-10px, 10px) rotate(5deg);
   }
   100% {
-    opacity: 1;
-    top: var(--land);
-    transform: translateX(-50%) rotate(var(--r));
+    fill: url(#bag-dots-light);
+    transform: scale(1.2) translate(10px, -10px) rotate(-5deg);
+  }
+}
+
+@keyframes bagShake {
+  0% {
+    transform: translateY(-10px) scale(0.88) translate(3px, 3px) skew(3deg);
+  }
+  100% {
+    transform: translateY(-10px) scale(0.92) translate(-3px, -3px) skew(-3deg);
   }
 }
 
@@ -642,8 +617,10 @@ body {
     transform: none;
   }
 
-  .tile:hover .bag-drop {
+  .tile-bag:hover .bag-bg,
+  .tile-bag:hover .bag-main {
     animation: none;
     transform: none;
+    filter: none;
   }
 }

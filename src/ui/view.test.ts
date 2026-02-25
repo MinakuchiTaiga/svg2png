@@ -15,10 +15,10 @@ function createElements(): ConverterElements {
     widthInput: { value: "" } as HTMLInputElement,
     heightInput: { value: "" } as HTMLInputElement,
     lockRatioInput: {} as HTMLInputElement,
-    pngOptions: { hidden: false } as HTMLDivElement,
+    pngOptions: { hidden: false } as unknown as HTMLDivElement,
     pngAlphaWrap: { hidden: false } as HTMLLabelElement,
     pngTransparentInput: { disabled: false } as HTMLInputElement,
-    jpgOptions: { hidden: true } as HTMLDivElement,
+    jpgOptions: { hidden: true } as unknown as HTMLDivElement,
     qualityWrap: { hidden: true } as HTMLLabelElement,
     qualityInput: { disabled: true } as HTMLInputElement,
     qualityValue: { textContent: "" } as HTMLElement,
@@ -27,8 +27,8 @@ function createElements(): ConverterElements {
       removeAttribute: () => {
         void 0;
       },
-    } as HTMLImageElement,
-    previewWrap: { dataset: { empty: "true" } } as HTMLDivElement,
+    } as unknown as HTMLImageElement,
+    previewWrap: { dataset: { empty: "true" } } as unknown as HTMLDivElement,
     metaText: { textContent: "" } as HTMLParagraphElement,
     downloadButton: { disabled: true } as HTMLButtonElement,
   };

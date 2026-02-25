@@ -23,22 +23,30 @@ export const appTemplate = `
           </svg>
         </article>
         <article class="tile tile-bag" aria-hidden="true">
-          <div class="bag-rain" aria-hidden="true">
-            <span class="bag-drop" style="--x: 8%; --dur: 0.54s; --delay: 0.22s; --r: -7deg; --land: calc(100% - 52px);"></span>
-            <span class="bag-drop" style="--x: 26%; --dur: 0.49s; --delay: 0.05s; --r: 5deg; --land: calc(100% - 54px);"></span>
-            <span class="bag-drop" style="--x: 44%; --dur: 0.56s; --delay: 0.31s; --r: -6deg; --land: calc(100% - 52px);"></span>
-            <span class="bag-drop" style="--x: 62%; --dur: 0.51s; --delay: 0.14s; --r: 7deg; --land: calc(100% - 55px);"></span>
-            <span class="bag-drop" style="--x: 80%; --dur: 0.55s; --delay: 0.43s; --r: -5deg; --land: calc(100% - 53px);"></span>
-            <span class="bag-drop" style="--x: 17%; --dur: 0.53s; --delay: 0.58s; --r: 6deg; --land: calc(100% - 76px);"></span>
-            <span class="bag-drop" style="--x: 35%; --dur: 0.5s; --delay: 0.69s; --r: -4deg; --land: calc(100% - 78px);"></span>
-            <span class="bag-drop" style="--x: 53%; --dur: 0.57s; --delay: 0.82s; --r: 8deg; --land: calc(100% - 74px);"></span>
-            <span class="bag-drop" style="--x: 71%; --dur: 0.52s; --delay: 0.95s; --r: -6deg; --land: calc(100% - 79px);"></span>
-            <span class="bag-drop" style="--x: 89%; --dur: 0.55s; --delay: 1.08s; --r: 5deg; --land: calc(100% - 75px);"></span>
-          </div>
-          <svg viewBox="0 0 220 220" role="img" aria-label="bag illustration">
-            <rect x="64" y="88" width="92" height="96" rx="6" fill="none" stroke="currentColor" stroke-width="5"/>
-            <path d="M82 88 c0 -18 10 -28 28 -28 c18 0 28 10 28 28" fill="none" stroke="currentColor" stroke-width="5"/>
-            <rect x="92" y="116" width="38" height="28" fill="currentColor"/>
+          <svg viewBox="0 0 220 220" role="img" aria-label="psychedelic bag illustration">
+            <defs>
+              <pattern id="bag-dots-light" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="8" y="8" width="4" height="4" fill="#A2B8D3" />
+              </pattern>
+              <pattern id="bag-dots-dark" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect x="8" y="8" width="4" height="4" fill="#0045A6" />
+              </pattern>
+              <filter id="bag-wave">
+                <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" result="noise">
+                  <animate attributeName="baseFrequency" values="0.05;0.15;0.05" dur="0.2s" repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+              </filter>
+              <g id="tile-bag-shape">
+                <path d="M82 88 c0 -18 10 -28 28 -28 c18 0 28 10 28 28" fill="none" stroke="currentColor" stroke-width="5" />
+                <rect x="64" y="88" width="92" height="96" rx="6" fill="#FFFFFF" stroke="currentColor" stroke-width="5" />
+                <rect x="92" y="116" width="38" height="28" fill="currentColor" />
+              </g>
+            </defs>
+            <g class="bag-wrapper">
+              <rect class="bag-bg" x="-110" y="-110" width="440" height="440" />
+              <use href="#tile-bag-shape" class="bag-main" />
+            </g>
           </svg>
         </article>
         <article class="tile tile-hand" aria-hidden="true">

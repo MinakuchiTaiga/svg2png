@@ -21,10 +21,10 @@ describe("saveImage", () => {
       click,
     } as unknown as HTMLAnchorElement;
 
-    const documentMock = globalThis.document as {
+    const documentMock = globalThis.document as unknown as {
       createElement: ReturnType<typeof vi.fn>;
     };
-    const urlMock = globalThis.URL as {
+    const urlMock = globalThis.URL as unknown as {
       createObjectURL: ReturnType<typeof vi.fn>;
       revokeObjectURL: ReturnType<typeof vi.fn>;
     };
