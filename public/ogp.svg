@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="SVG2PNG OGP">
+  <rect width="1200" height="630" fill="#e9eef7" />
+  <rect x="36" y="36" width="1128" height="558" fill="#fafcff" stroke="#0d47a1" stroke-width="4" />
+
+  <text
+    x="600"
+    y="170"
+    fill="#0d47a1"
+    font-family="'Arial Black', 'Impact', sans-serif"
+    font-size="136"
+    font-weight="900"
+    letter-spacing="1"
+    text-anchor="middle"
+    dominant-baseline="middle"
+  >
+    SVG2PNG
+  </text>
+
+  <g transform="translate(600 350)">
+    <g transform="scale(1.4)">
+      <g transform="translate(-110 -134)" fill="none" stroke="#0d47a1" stroke-width="5" stroke-linecap="round">
+        <path d="M56 188 c-3 -46 4 -82 21 -108 c7 -11 20 -7 20 7 v34 h8 v-40 c0 -10 14 -10 14 0 v40 h8 v-36 c0 -9 14 -9 14 0 v40 h8 v-30 c0 -9 14 -9 14 0 v68 c0 20 0 27 12 44" />
+        <ellipse cx="89" cy="146" rx="27" ry="16" />
+        <circle cx="89" cy="146" r="7" fill="#0d47a1" stroke="none" />
+      </g>
+    </g>
+  </g>
+
+  <text
+    x="600"
+    y="536"
+    fill="#2459b6"
+    font-family="'Avenir Next', 'Futura', 'Trebuchet MS', sans-serif"
+    font-size="22"
+    font-weight="700"
+    letter-spacing="7"
+    text-anchor="middle"
+  >
+    VECTOR LAB / CLIENT SIDE CONVERTER / NO SERVER UPLOAD
+  </text>
+</svg>
