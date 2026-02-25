@@ -63,7 +63,27 @@ export const appTemplate = `
             <text x="110" y="120" text-anchor="middle">BLUE CLUB</text>
           </svg>
         </article>
-        <article class="tile tile-wave" aria-hidden="true"></article>
+        <article class="tile tile-wave" aria-hidden="true">
+          <svg viewBox="0 0 220 460" role="img" aria-label="infinite zoom rings">
+            <defs>
+              <clipPath id="tile-wave-clip">
+                <rect x="25" y="30" width="170" height="400" rx="85" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#tile-wave-clip)">
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+              <circle cx="110" cy="230" class="tile-wave-ring"></circle>
+            </g>
+          </svg>
+        </article>
       </aside>
 
       <section class="panel reveal reveal-3" aria-label="converter panel">

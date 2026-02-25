@@ -140,27 +140,65 @@ body {
 
 .tile-wave {
   position: relative;
-  isolation: isolate;
+  --wave-stroke: 21px;
+  --wave-max-r: 294px;
+  --wave-duration: 7s;
+  --wave-step: 1s;
+  --wave-phase-offset: -0.5s;
 }
 
-@property --wave-phase {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
+.tile-wave svg {
+  width: 100%;
+  height: 100%;
 }
 
-.tile-wave::before {
-  content: "";
-  width: 78%;
-  height: 88%;
-  --wave-phase: 0px;
-  border-radius: 999px;
-  background-image: repeating-radial-gradient(
-    circle at center,
-    var(--ink) 0 calc(14px + var(--wave-phase)),
-    transparent calc(15px + var(--wave-phase)) calc(27px + var(--wave-phase))
-  );
-  will-change: --wave-phase;
+.tile-wave-ring {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: var(--wave-stroke);
+  r: 0;
+  animation: waveZoom var(--wave-duration) linear infinite;
+  animation-play-state: paused;
+}
+
+.tile-wave-ring:nth-child(1) {
+  animation-delay: var(--wave-phase-offset);
+}
+
+.tile-wave-ring:nth-child(2) {
+  animation-delay: calc(var(--wave-phase-offset) - (1 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(3) {
+  animation-delay: calc(var(--wave-phase-offset) - (2 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(4) {
+  animation-delay: calc(var(--wave-phase-offset) - (3 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(5) {
+  animation-delay: calc(var(--wave-phase-offset) - (4 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(6) {
+  animation-delay: calc(var(--wave-phase-offset) - (5 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(7) {
+  animation-delay: calc(var(--wave-phase-offset) - (6 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(8) {
+  animation-delay: calc(var(--wave-phase-offset) - (7 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(9) {
+  animation-delay: calc(var(--wave-phase-offset) - (8 * var(--wave-step)));
+}
+
+.tile-wave-ring:nth-child(10) {
+  animation-delay: calc(var(--wave-phase-offset) - (9 * var(--wave-step)));
 }
 
 .tile:hover {
@@ -211,8 +249,8 @@ body {
   animation: shirtBeat 0.75s cubic-bezier(0.33, 1, 0.68, 1) infinite;
 }
 
-.tile-wave:hover::before {
-  animation: waveTunnel 1.2s ease-in infinite;
+.tile-wave:hover .tile-wave-ring {
+  animation-play-state: running;
 }
 
 @keyframes checkerShift {
@@ -301,12 +339,12 @@ body {
   }
 }
 
-@keyframes waveTunnel {
-  from {
-    --wave-phase: 0px;
+@keyframes waveZoom {
+  0% {
+    r: 0;
   }
-  to {
-    --wave-phase: 27px;
+  100% {
+    r: var(--wave-max-r);
   }
 }
 
@@ -615,6 +653,10 @@ body {
   .tile:hover::after {
     animation: none;
     transform: none;
+  }
+
+  .tile-wave:hover .tile-wave-ring {
+    animation: none;
   }
 
   .tile-bag:hover .bag-bg,
